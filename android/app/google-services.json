@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "445150508244",
+    "firebase_url": "https://idea-growr.firebaseio.com",
+    "project_id": "idea-growr",
+    "storage_bucket": "idea-growr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445150508244:android:420f5213db313293cfb741",
+        "android_client_info": {
+          "package_name": "idea.growr.clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445150508244-dnao79te2r2aesa9r0d8qsv463lnjamp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwP0QMVAb87eSG_k9P94yaAvQ9U6vGxW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445150508244-dnao79te2r2aesa9r0d8qsv463lnjamp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
