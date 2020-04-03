@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
+import 'package:idea_growr/views/shared/custom_scaffold.dart';
 import 'package:idea_growr/views/shared/custom_text.dart';
 import 'package:idea_growr/views/shared/extend_text.dart';
 import 'package:idea_growr/views/shared/spacer_box.dart';
@@ -9,6 +10,45 @@ import 'package:idea_growr/views/shared/spacer_box.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return CustomScaffold(
+      child: _buildBody(),
+      appBar: _buildAppBar(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text('Idea Growr'),
+          Row(
+            children: <Widget>[
+              Icon(
+                Icons.file_upload,
+                size: 30,
+                color: AppColors.gray,
+              ),
+              SpacerBox.h15,
+              Icon(
+                Icons.home,
+                size: 30,
+                color: AppColors.gray,
+              ),
+              SpacerBox.h15,
+              Icon(
+                Icons.collections,
+                size: 30,
+                color: AppColors.gray,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBody() {
     return SingleChildScrollView(
       child: CustomContainer(
         child: Column(

@@ -13,13 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: AppColors.theme,
       ),
-      home: Scaffold(
-        backgroundColor: AppColors.backgroundBase,
-        appBar: AppBar(
-          title: Text('Idea Growr'),
-        ),
-        body: Home(),
-      ),
+      home: Home()
     );
   }
 }
