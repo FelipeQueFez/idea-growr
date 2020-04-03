@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:445150508244:android:420f5213db313293cfb741",
+        "mobilesdk_app_id": "1:445150508244:android:5e87c44b805d407acfb741",
         "android_client_info": {
-          "package_name": "idea.growr.clone"
+          "package_name": "com.example.idea_growr"
         }
       },
       "oauth_client": [
