@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/views/screens/idea/idea.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
@@ -7,7 +8,12 @@ import 'package:idea_growr/views/shared/custom_text.dart';
 import 'package:idea_growr/views/shared/extend_text.dart';
 import 'package:idea_growr/views/shared/spacer_box.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -61,6 +67,12 @@ class Home extends StatelessWidget {
                 color: AppColors.white,
                 fontWeight: FontWeight.bold,
               ),
+              onTapCallback: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Idea()),
+                );
+              },
             ),
             CustomCard(
               backgroundColor: AppColors.primary,
