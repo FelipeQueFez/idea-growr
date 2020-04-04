@@ -11,11 +11,11 @@ class CategoryService {
     return [
       _mockAplicativo(),
       _mockNegocios(),
-      _mockPessoal(),
       _mockRealizacao(),
+      _mockPessoal(),
+      _mockTolice(),
       _mockSociedade(),
       _mockStartup(),
-      _mockTolice(),
     ];
   }
 
