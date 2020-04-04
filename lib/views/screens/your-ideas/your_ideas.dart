@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/modules/category/services/category_service.dart';
 import 'package:idea_growr/views/screens/vision/vision.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 
@@ -19,9 +20,15 @@ class YourIdeas extends StatelessWidget {
         return ListTile(
           title: Text('row $index'),
           onTap: () {
+            CategoryService categoryService = new CategoryService();
+            
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Vison()),
+              MaterialPageRoute(
+                builder: (context) => Vison(
+                  categories: categoryService.getCategories(),
+                ),
+              ),
             );
           },
         );

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/modules/category/models/category_model.dart';
 import 'package:idea_growr/views/screens/questions/category.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 
 class Vison extends StatelessWidget {
+  final List<CategoryModel> categories;
+
+  const Vison({Key key, @required this.categories}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -14,15 +19,19 @@ class Vison extends StatelessWidget {
 
   Widget _buildBody() {
     return ListView.separated(
-      itemCount: 10,
+      itemCount: categories.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text('row $index'),
+          title: Text(categories[index].title),
           trailing: Icon(Icons.edit),
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Category(title: index.toString(),)),
+              MaterialPageRoute(
+                builder: (context) => Category(
+                  category: categories[index],
+                ),
+              ),
             );
           },
         );

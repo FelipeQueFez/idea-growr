@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/modules/category/models/category_model.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
@@ -7,9 +8,9 @@ import 'package:idea_growr/views/shared/extend_text.dart';
 import 'package:idea_growr/views/shared/spacer_box.dart';
 
 class Category extends StatelessWidget {
-  final String title;
+  final CategoryModel category;
 
-  const Category({Key key, @required this.title}) : super(key: key);
+  const Category({Key key, @required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class Category extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(title),
+          Text(category.title),
           Row(
             children: <Widget>[
               Icon(
