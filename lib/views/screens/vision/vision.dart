@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/views/screens/questions/category.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 
 class Vison extends StatelessWidget {
@@ -19,7 +20,10 @@ class Vison extends StatelessWidget {
           title: Text('row $index'),
           trailing: Icon(Icons.edit),
           onTap: () {
-            print('tapped');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Category(title: index.toString(),)),
+            );
           },
         );
       },
