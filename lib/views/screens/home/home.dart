@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
 import 'package:idea_growr/views/screens/idea/idea.dart';
+import 'package:idea_growr/views/screens/your-ideas/your_ideas.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
@@ -92,6 +93,12 @@ class _HomeState extends State<Home> {
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
               ),
+              onTapCallback: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => YourIdeas()),
+                );
+              },
             ),
             CustomCard(
               backgroundColor: AppColors.white,
