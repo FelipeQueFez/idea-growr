@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
-import 'package:idea_growr/views/screens/vision/vision.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 
-class YourIdeas extends StatelessWidget {
+class Vison extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -18,11 +17,9 @@ class YourIdeas extends StatelessWidget {
       itemBuilder: (context, index) {
         return ListTile(
           title: Text('row $index'),
+          trailing: Icon(Icons.edit),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Vison()),
-            );
+            print('tapped');
           },
         );
       },
@@ -37,11 +34,16 @@ class YourIdeas extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text('Suas Ideias'),
+          Text('Visão Global'),
           Row(
             children: <Widget>[
               Icon(
-                Icons.important_devices,
+                Icons.restore_from_trash,
+                size: 30,
+                color: AppColors.gray,
+              ),
+              Icon(
+                Icons.share,
                 size: 30,
                 color: AppColors.gray,
               ),
