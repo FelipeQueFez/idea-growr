@@ -3,11 +3,10 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseProvider {
   Future<Database> openDatabaseAsync() async {
-
     Database database = await openDatabase('my_db.db', version: 1,
         onCreate: (Database db, int version) async {
       await db.execute(
-          'CREATE TABLE Ideas (id INTEGER PRIMARY KEY, content TEXT)');
+          'CREATE TABLE Ideas (id INTEGER PRIMARY KEY, userId TEXT, content TEXT)');
     });
 
     getItInstance.registerSingleton(database);
@@ -20,16 +19,21 @@ class DatabaseProvider {
     getItInstance.unregister<Database>();
   }
 
-  Future insertDatabaseSync(Database db, String content) async {
+  Future insertDatabaseSync(Database db, String userId, String content) async {
     await db.transaction((txn) async {
       int id1 = await txn.rawInsert(
-          'INSERT INTO Ideas(content) VALUES("$content")');
+          'INSERT INTO Ideas(userId, content) VALUES("$userId", "$content")');
       print('inserted1: $id1');
     });
   }
 
-  Future<List<Map>> selectDatabaseAsync(Database db) async {
-    List<Map> list = await db.rawQuery('SELECT * FROM Ideas');
-    return list;
+  Future<Map<String, dynamic>> selectUserIdDatabaseAsync(
+      Database db, String userId) async {
+    List<Map<String, dynamic>> list = await db.rawQuery(
+        'SELECT id, userId, content FROM Ideas WHERE userId = "$userId"');
+    if (list.length > 0)
+      return list[0];
+    else
+      return null;
   }
 }

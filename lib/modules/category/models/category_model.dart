@@ -5,5 +5,5 @@ class CategoryModel {
   final String title;
   final List<QuestionModel> questions;
 
-  CategoryModel(this.id, this.title, this.questions);
+  CategoryModel({this.id, this.title, this.questions});
 }

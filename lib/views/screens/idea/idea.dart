@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/modules/database/services/database_service.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
@@ -12,8 +13,8 @@ class Idea extends StatefulWidget {
 }
 
 class _IdeaState extends State<Idea> {
-  TextEditingController _textEditingController;
-  TextEditingController _textNoteEditingController;
+  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _textNoteEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,10 @@ class _IdeaState extends State<Idea> {
             color: AppColors.white,
             fontWeight: FontWeight.bold,
           ),
-          onTapCallback: () => print('salvar'),
+          onTapCallback: () {
+            DatabaseService service = new DatabaseService();
+            service.insertIdeaAsync(_textEditingController.text, _textNoteEditingController.text);
+          },
         ),
       ),
     );
