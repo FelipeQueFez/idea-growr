@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/modules/database/providers/database_provider.dart';
 import 'package:idea_growr/views/screens/idea/idea.dart';
 import 'package:idea_growr/views/screens/your-ideas/your_ideas.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
@@ -93,7 +94,15 @@ class _HomeState extends State<Home> {
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
               ),
-              onTapCallback: () {
+              onTapCallback: () async {
+
+                //TODO:test
+                DatabaseProvider service = new DatabaseProvider();
+
+                var db = await service.openDatabaseAsync();
+                await service.insertDatabaseSync(db, '{name: \'felipe\'}');
+                var result = await service.selectDatabaseAsync(db);
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => YourIdeas()),
