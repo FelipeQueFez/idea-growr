@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
 import 'package:idea_growr/modules/database/services/database_service.dart';
+import 'package:idea_growr/setup.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
@@ -38,7 +39,7 @@ class _IdeaState extends State<Idea> {
             fontWeight: FontWeight.bold,
           ),
           onTapCallback: () {
-            DatabaseService service = new DatabaseService();
+            DatabaseService service = getItInstance.get<DatabaseService>();
             service.insertIdeaAsync(_textEditingController.text, _textNoteEditingController.text);
           },
         ),

@@ -8,17 +8,23 @@ import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
 class DatabaseService {
+  final DatabaseProvider provider;
+
+  DatabaseService(this.provider);
+
   void insertIdeaAsync(String ideaTitle, String ideaDescription) async {
     var user = getItInstance.get<UserModel>();
     var db = getItInstance.get<Database>();
+    var uuid = getItInstance.get<Uuid>();
 
-    Uuid uuid = Uuid();
-    DatabaseProvider provider = new DatabaseProvider();
-    UserIdeasModel newIdea = new UserIdeasModel(ideaId: uuid.v1(), ideaTitle: ideaTitle, ideaDescription: ideaDescription);
+    UserIdeasModel newIdea = new UserIdeasModel(
+        ideaId: uuid.v1(),
+        ideaTitle: ideaTitle,
+        ideaDescription: ideaDescription);
 
     var result = await provider.selectUserIdDatabaseAsync(db, user.userId);
 
-    if(result.length > 0) {
+    if (result != null) {
       //TODO:in development - update
       String content = result["content"];
       content = content.replaceAll('\'', "\"");
