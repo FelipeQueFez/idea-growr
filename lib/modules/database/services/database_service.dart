@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:idea_growr/modules/database/providers/database_provider.dart';
 import 'package:idea_growr/modules/shared/user/user_model.dart';
+import 'package:idea_growr/modules/user_answer/model/idea_model.dart';
 import 'package:idea_growr/modules/user_answer/model/user_ideas_model.dart';
 import 'package:idea_growr/setup.dart';
 import 'package:sqflite/sqflite.dart';
@@ -17,7 +18,7 @@ class DatabaseService {
     var db = getItInstance.get<Database>();
     var uuid = getItInstance.get<Uuid>();
 
-    UserIdeasModel newIdea = new UserIdeasModel(
+    IdeaModel newIdea = new IdeaModel(
         ideaId: uuid.v1(),
         ideaTitle: ideaTitle,
         ideaDescription: ideaDescription);
@@ -25,16 +26,27 @@ class DatabaseService {
     var result = await provider.selectUserIdDatabaseAsync(db, user.userId);
 
     if (result != null) {
-      //TODO:in development - update
       String content = result["content"];
       content = content.replaceAll('\'', "\"");
+
       var map = json.decode(content);
-      var ideaTest = UserIdeasModel.fromJsonMap(map);
-      print('OK');
+      var currentUserIdeas = UserIdeasModel.fromJsonMap(map);
+
+      currentUserIdeas.ideas.add(newIdea);
+      var jsonConvert = _objectIdeasToString(currentUserIdeas);
+
+      provider.updateUserIdDatabaseAsync(db, user.userId, jsonConvert);
     } else {
-      var jsonConvert = json.encode(newIdea.toJson());
-      jsonConvert = jsonConvert.replaceAll("\"", "'");
+      UserIdeasModel userIdeas = new UserIdeasModel(ideas: List());
+      userIdeas.ideas.add(newIdea);
+      var jsonConvert = _objectIdeasToString(userIdeas);
       provider.insertDatabaseSync(db, user.userId, jsonConvert);
     }
+  }
+
+  String _objectIdeasToString(UserIdeasModel ideas) {
+    var jsonConvert = json.encode(ideas.toJson());
+    jsonConvert = jsonConvert.replaceAll("\"", "'");
+    return jsonConvert;
   }
 }

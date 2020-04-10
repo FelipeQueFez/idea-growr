@@ -1,31 +1,22 @@
-import 'package:idea_growr/modules/user_answer/model/answer_model.dart';
+import 'package:idea_growr/modules/user_answer/model/idea_model.dart';
 
 class UserIdeasModel {
-  final String ideaId;
-  final String ideaTitle;
-  final String ideaDescription;
-  final List<AnswerModel> answers;
+  final List<IdeaModel> ideas;
 
-  UserIdeasModel(
-      {this.ideaId, this.ideaTitle, this.ideaDescription, this.answers});
+  UserIdeasModel({
+    this.ideas,
+  });
 
   UserIdeasModel.fromJsonMap(Map<String, dynamic> json)
-      : ideaId = json['ideaId'],
-        ideaTitle = json['ideaTitle'],
-        ideaDescription = json['ideaDescription'],
-        answers = json["answers"] != null
-            ? List<AnswerModel>.from(
-                json["answers"].map((it) => AnswerModel.fromJsonMap(it)))
+      : ideas = json["ideas"] != null
+            ? List<IdeaModel>.from(
+                json["ideas"].map((it) => IdeaModel.fromJsonMap(it)))
             : [];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['ideaId'] = this.ideaId;
-    data['ideaTitle'] = this.ideaTitle;
-    data['ideaDescription'] = this.ideaDescription;
-    data['answers'] = this.answers != null
-        ? this.answers.map((it) => it.toJson()).toList()
-        : [];
+    data['ideas'] =
+        this.ideas != null ? this.ideas.map((it) => it.toJson()).toList() : [];
     return data;
   }
 }

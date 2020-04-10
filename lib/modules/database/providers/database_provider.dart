@@ -36,4 +36,11 @@ class DatabaseProvider {
     else
       return null;
   }
+
+  Future<int> updateUserIdDatabaseAsync(
+      Database db, String userId, String content) async {
+    int count = await db.rawUpdate(
+        'UPDATE Ideas set content = "$content" WHERE userId = "$userId"');
+    return count;
+  }
 }
