@@ -3,6 +3,7 @@ import 'package:idea_growr/modules/category/services/category_service.dart';
 import 'package:idea_growr/modules/database/providers/database_provider.dart';
 import 'package:idea_growr/modules/database/services/database_service.dart';
 import 'package:idea_growr/modules/shared/user/user_model.dart';
+import 'package:idea_growr/views/screens/idea/bloc/idea_bloc.dart';
 import 'package:idea_growr/views/screens/your-ideas/bloc/your_ideas_bloc.dart';
 import 'package:uuid/uuid.dart';
 
@@ -38,4 +39,5 @@ void _registerSingletonServices() {
 
 void _registerBlocs() {
   getItInstance.registerLazySingleton<YourIdeasBloc>(() => YourIdeasBloc(getItInstance()));
+  getItInstance.registerLazySingleton<IdeaBloc>(() => IdeaBloc(getItInstance()));
 }

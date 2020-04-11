@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idea_growr/app_colors.dart';
-import 'package:idea_growr/modules/database/services/database_service.dart';
 import 'package:idea_growr/setup.dart';
+import 'package:idea_growr/views/screens/idea/bloc/idea_bloc.dart';
+import 'package:idea_growr/views/screens/idea/bloc/idea_event.dart';
+import 'package:idea_growr/views/screens/idea/bloc/idea_state.dart';
+import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
@@ -14,8 +18,15 @@ class Idea extends StatefulWidget {
 }
 
 class _IdeaState extends State<Idea> {
+  IdeaBloc _ideaBloc;
   TextEditingController _textEditingController = TextEditingController();
   TextEditingController _textNoteEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    _ideaBloc = getItInstance<IdeaBloc>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +50,8 @@ class _IdeaState extends State<Idea> {
             fontWeight: FontWeight.bold,
           ),
           onTapCallback: () {
-            DatabaseService service = getItInstance.get<DatabaseService>();
-            service.insertIdeaAsync(_textEditingController.text, _textNoteEditingController.text);
+            _ideaBloc.add(RequestIdea(
+                _textEditingController.text, _textNoteEditingController.text));
           },
         ),
       ),
@@ -68,6 +79,28 @@ class _IdeaState extends State<Idea> {
   }
 
   Widget _buildBody() {
+    return BlocBuilder<IdeaBloc, DefaultState>(
+      bloc: _ideaBloc,
+      builder: (BuildContext context, DefaultState state) {
+        if (state is IdeaInitial) {
+          return _buildContent();
+        }
+
+        if (state is Loading) {
+          return CircularProgressIndicator();
+        }
+
+        if (state is Success) {
+          //TODO:rever
+          Navigator.pop(context);
+        }
+
+        return Container();
+      },
+    );
+  }
+
+  Widget _buildContent() {
     return SingleChildScrollView(
       child: CustomContainer(
         child: Column(

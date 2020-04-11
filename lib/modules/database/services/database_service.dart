@@ -15,7 +15,7 @@ class DatabaseService {
 
   DatabaseService(this.provider, this.userModel, this.db);
 
-  void insertIdeaAsync(String ideaTitle, String ideaDescription) async {
+  Future insertIdeaAsync(String ideaTitle, String ideaDescription) async {
     var uuid = getItInstance.get<Uuid>();
 
     IdeaModel newIdea = new IdeaModel(

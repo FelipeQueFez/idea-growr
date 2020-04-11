@@ -8,6 +8,11 @@ class DefaultState extends Equatable {
   List<Object> get props => null;
 }
 
+class Success extends DefaultState {
+  @override
+  String toString() => 'Success';
+}
+
 class Initial extends DefaultState {
   @override
   String toString() => 'Initial';
