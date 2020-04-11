@@ -8,6 +8,7 @@ import 'package:idea_growr/views/screens/your-ideas/bloc/your_ideas_bloc.dart';
 import 'package:idea_growr/views/screens/your-ideas/bloc/your_ideas_event.dart';
 import 'package:idea_growr/views/screens/your-ideas/bloc/your_ideas_state.dart';
 import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
+import 'package:idea_growr/views/shared/custom_circular_progress_indicador.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 
 class YourIdeas extends StatefulWidget {
@@ -39,7 +40,7 @@ class _YourIdeasState extends State<YourIdeas> {
       bloc: _yourIdeasBloc,
       builder: (BuildContext context, DefaultState state) {
         if (state is Loading) {
-          return CircularProgressIndicator();
+          return CustomCircularProgressIndicator();
         }
         if (state is YourIdeasState) {
           return ListView.separated(

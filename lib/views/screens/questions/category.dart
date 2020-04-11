@@ -10,6 +10,7 @@ import 'package:idea_growr/views/screens/questions/bloc/category_state.dart';
 import 'package:idea_growr/views/screens/questions/category_question.dart';
 import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
+import 'package:idea_growr/views/shared/custom_circular_progress_indicador.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 import 'package:idea_growr/views/shared/extend_text.dart';
@@ -68,7 +69,7 @@ class _CategoryState extends State<Category> {
         bloc: _categoryBloc,
         builder: (BuildContext context, DefaultState state) {
           if (state is Loading) {
-            return CircularProgressIndicator();
+            return CustomCircularProgressIndicator();
           }
 
           if (state is CategoryInitial) {

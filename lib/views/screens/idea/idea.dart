@@ -7,6 +7,7 @@ import 'package:idea_growr/views/screens/idea/bloc/idea_event.dart';
 import 'package:idea_growr/views/screens/idea/bloc/idea_state.dart';
 import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
+import 'package:idea_growr/views/shared/custom_circular_progress_indicador.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 import 'package:idea_growr/views/shared/extend_text.dart';
@@ -87,7 +88,7 @@ class _IdeaState extends State<Idea> {
         }
 
         if (state is Loading) {
-          return CircularProgressIndicator();
+          return CustomCircularProgressIndicator();
         }
 
         if (state is Success) {
