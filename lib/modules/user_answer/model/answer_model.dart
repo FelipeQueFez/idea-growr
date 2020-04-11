@@ -1,7 +1,7 @@
 class AnswerModel {
-  final int categoryId;
-  final int questionId;
-  final String answer;
+  int categoryId;
+  int questionId;
+  String answer;
 
   AnswerModel({this.categoryId, this.questionId, this.answer});
 

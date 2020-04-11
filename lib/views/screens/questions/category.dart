@@ -12,7 +12,8 @@ class Category extends StatelessWidget {
   final CategoryModel category;
   final IdeaModel idea;
 
-  const Category({Key key, @required this.category, @required this.idea}) : super(key: key);
+  const Category({Key key, @required this.category, @required this.idea})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,8 @@ class Category extends StatelessWidget {
 
   List<Widget> _buildQuestions() {
     return category.questions.map((item) {
-      return CategoryQuestion(item: item);
+      return CategoryQuestion(
+          question: item, categoryId: category.id, idea: idea);
     }).toList();
   }
 
