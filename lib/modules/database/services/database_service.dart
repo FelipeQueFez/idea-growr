@@ -10,12 +10,12 @@ import 'package:uuid/uuid.dart';
 
 class DatabaseService {
   final DatabaseProvider provider;
+  final UserModel userModel;
+  final Database db;
 
-  DatabaseService(this.provider);
+  DatabaseService(this.provider, this.userModel, this.db);
 
   void insertIdeaAsync(String ideaTitle, String ideaDescription) async {
-    var user = getItInstance.get<UserModel>();
-    var db = getItInstance.get<Database>();
     var uuid = getItInstance.get<Uuid>();
 
     IdeaModel newIdea = new IdeaModel(
@@ -23,30 +23,48 @@ class DatabaseService {
         ideaTitle: ideaTitle,
         ideaDescription: ideaDescription);
 
-    var result = await provider.selectUserIdDatabaseAsync(db, user.userId);
+    var result = await provider.selectUserIdDatabaseAsync(db, userModel.userId);
 
     if (result != null) {
-      String content = result["content"];
-      content = content.replaceAll('\'', "\"");
-
-      var map = json.decode(content);
-      var currentUserIdeas = UserIdeasModel.fromJsonMap(map);
+      var currentUserIdeas = _stringToObject(result);
 
       currentUserIdeas.ideas.add(newIdea);
       var jsonConvert = _objectIdeasToString(currentUserIdeas);
 
-      provider.updateUserIdDatabaseAsync(db, user.userId, jsonConvert);
+      provider.updateUserIdDatabaseAsync(db, userModel.userId, jsonConvert);
     } else {
       UserIdeasModel userIdeas = new UserIdeasModel(ideas: List());
       userIdeas.ideas.add(newIdea);
       var jsonConvert = _objectIdeasToString(userIdeas);
-      provider.insertDatabaseSync(db, user.userId, jsonConvert);
+      provider.insertDatabaseSync(db, userModel.userId, jsonConvert);
     }
+  }
+
+  Future<UserIdeasModel> selectedIdeasAsync() async {
+    var result = await provider.selectUserIdDatabaseAsync(db, userModel.userId);
+    UserIdeasModel currentUserIdeas;
+    
+    if (result != null)
+      currentUserIdeas = _stringToObject(result);
+    else
+      currentUserIdeas = new UserIdeasModel(ideas: List());
+
+    return currentUserIdeas;
   }
 
   String _objectIdeasToString(UserIdeasModel ideas) {
     var jsonConvert = json.encode(ideas.toJson());
     jsonConvert = jsonConvert.replaceAll("\"", "'");
     return jsonConvert;
+  }
+
+  UserIdeasModel _stringToObject(Map<String, dynamic> result) {
+    String content = result["content"];
+    content = content.replaceAll('\'', "\"");
+
+    var map = json.decode(content);
+    var currentUserIdeas = UserIdeasModel.fromJsonMap(map);
+
+    return currentUserIdeas;
   }
 }
