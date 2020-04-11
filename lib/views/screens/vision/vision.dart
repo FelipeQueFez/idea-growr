@@ -33,6 +33,9 @@ class Vison extends StatelessWidget {
                 builder: (context) => Category(
                   idea: idea,
                   category: categories[index],
+                  saveChanges: (idea) {
+                    print('save 2');
+                  },
                 ),
               ),
             );

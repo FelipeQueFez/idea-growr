@@ -11,8 +11,9 @@ import 'package:idea_growr/views/shared/extend_text.dart';
 class Category extends StatelessWidget {
   final CategoryModel category;
   final IdeaModel idea;
+  final Function(IdeaModel) saveChanges;
 
-  const Category({Key key, @required this.category, @required this.idea})
+  const Category({Key key, @required this.category, @required this.idea, @required this.saveChanges})
       : super(key: key);
 
   @override
@@ -36,7 +37,9 @@ class Category extends StatelessWidget {
             color: AppColors.white,
             fontWeight: FontWeight.bold,
           ),
-          onTapCallback: () => print('salvar'),
+          onTapCallback: () {
+            saveChanges(idea);
+          },
         ),
       ),
     );
