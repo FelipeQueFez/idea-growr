@@ -40,10 +40,22 @@ class DatabaseService {
     }
   }
 
+  Future updateIdeaAsync(IdeaModel idea) async {
+    var result = await provider.selectUserIdDatabaseAsync(db, userModel.userId);
+    var currentUserIdeas = _stringToObject(result);
+
+    currentUserIdeas.ideas.removeWhere((item) => item.ideaId == idea.ideaId);
+    currentUserIdeas.ideas.add(idea);
+
+    var jsonConvert = _objectIdeasToString(currentUserIdeas);
+
+    provider.updateUserIdDatabaseAsync(db, userModel.userId, jsonConvert);
+  }
+
   Future<UserIdeasModel> selectedIdeasAsync() async {
     var result = await provider.selectUserIdDatabaseAsync(db, userModel.userId);
     UserIdeasModel currentUserIdeas;
-    
+
     if (result != null)
       currentUserIdeas = _stringToObject(result);
     else

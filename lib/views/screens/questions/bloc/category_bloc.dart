@@ -1,11 +1,16 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:idea_growr/modules/database/services/database_service.dart';
 
 import 'package:idea_growr/views/screens/questions/bloc/category_event.dart';
 import 'package:idea_growr/views/screens/questions/bloc/category_state.dart';
 import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
 
 class CategoryBloc extends Bloc<CategoryEvent, DefaultState> {
+  final DatabaseService databaseService;
+
+  CategoryBloc(this.databaseService);
+
   @override
   DefaultState get initialState => CategoryInitial.initial();
 
@@ -13,6 +18,12 @@ class CategoryBloc extends Bloc<CategoryEvent, DefaultState> {
   Stream<DefaultState> mapEventToState(
     CategoryEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    if (event is SaveCategory) {
+      yield Loading();
+
+      await databaseService.updateIdeaAsync(event.idea);
+
+      yield Success();
+    }
   }
 }

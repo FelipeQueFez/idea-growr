@@ -92,7 +92,7 @@ class _IdeaState extends State<Idea> {
 
         if (state is Success) {
           //TODO:rever
-          Navigator.pop(context);
+          //Navigator.pop(context);
         }
 
         return Container();

@@ -1,20 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idea_growr/app_colors.dart';
 import 'package:idea_growr/modules/category/models/category_model.dart';
 import 'package:idea_growr/modules/user_answer/model/idea_model.dart';
+import 'package:idea_growr/setup.dart';
+import 'package:idea_growr/views/screens/questions/bloc/category_bloc.dart';
+import 'package:idea_growr/views/screens/questions/bloc/category_event.dart';
+import 'package:idea_growr/views/screens/questions/bloc/category_state.dart';
 import 'package:idea_growr/views/screens/questions/category_question.dart';
+import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 import 'package:idea_growr/views/shared/extend_text.dart';
 
-class Category extends StatelessWidget {
+class Category extends StatefulWidget {
   final CategoryModel category;
   final IdeaModel idea;
-  final Function(IdeaModel) saveChanges;
 
-  const Category({Key key, @required this.category, @required this.idea, @required this.saveChanges})
+  const Category({Key key, @required this.category, @required this.idea})
       : super(key: key);
+
+  @override
+  _CategoryState createState() => _CategoryState();
+}
+
+class _CategoryState extends State<Category> {
+  CategoryBloc _categoryBloc;
+
+  @override
+  void initState() {
+    _categoryBloc = getItInstance<CategoryBloc>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +56,7 @@ class Category extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
           onTapCallback: () {
-            saveChanges(idea);
+            _categoryBloc.add(SaveCategory(widget.idea));
           },
         ),
       ),
@@ -46,6 +64,27 @@ class Category extends StatelessWidget {
   }
 
   Widget _buildBody() {
+    return BlocBuilder<CategoryBloc, DefaultState>(
+        bloc: _categoryBloc,
+        builder: (BuildContext context, DefaultState state) {
+          if (state is Loading) {
+            return CircularProgressIndicator();
+          }
+
+          if (state is CategoryInitial) {
+            return _buildContent();
+          }
+
+          if (state is Success) {
+            //TODO:rever
+            //Navigator.pop(context);
+          }
+
+          return Container();
+        });
+  }
+
+  Widget _buildContent() {
     return SingleChildScrollView(
       child: CustomContainer(
         child: Column(children: _buildQuestions()),
@@ -54,9 +93,9 @@ class Category extends StatelessWidget {
   }
 
   List<Widget> _buildQuestions() {
-    return category.questions.map((item) {
+    return widget.category.questions.map((item) {
       return CategoryQuestion(
-          question: item, categoryId: category.id, idea: idea);
+          question: item, categoryId: widget.category.id, idea: widget.idea);
     }).toList();
   }
 
@@ -65,7 +104,7 @@ class Category extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(category.title),
+          Text(widget.category.title),
           Row(
             children: <Widget>[
               Icon(
