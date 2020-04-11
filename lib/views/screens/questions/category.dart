@@ -103,10 +103,13 @@ class _CategoryState extends State<Category> {
           Text(widget.category.title),
           Row(
             children: <Widget>[
-              Icon(
-                Icons.save,
-                size: 30,
+              IconButton(
+                icon: Icon(Icons.save),
+                iconSize: 30,
                 color: AppColors.gray,
+                onPressed: () {
+                  _categoryBloc.add(SaveCategory(widget.idea));
+                },
               ),
             ],
           )
