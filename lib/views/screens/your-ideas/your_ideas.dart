@@ -53,6 +53,7 @@ class _YourIdeasState extends State<YourIdeas> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => Vison(
+                        idea: idea,
                         categories: _categoryService.getCategories(),
                       ),
                     ),

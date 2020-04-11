@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
 import 'package:idea_growr/modules/category/models/category_model.dart';
+import 'package:idea_growr/modules/user_answer/model/idea_model.dart';
 import 'package:idea_growr/views/screens/questions/category.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 
 class Vison extends StatelessWidget {
   final List<CategoryModel> categories;
+  final IdeaModel idea;
 
-  const Vison({Key key, @required this.categories}) : super(key: key);
+  const Vison({Key key, @required this.categories, @required this.idea}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class Vison extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => Category(
+                  idea: idea,
                   category: categories[index],
                 ),
               ),

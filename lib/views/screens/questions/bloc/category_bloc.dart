@@ -1,0 +1,18 @@
+import 'dart:async';
+import 'package:bloc/bloc.dart';
+
+import 'package:idea_growr/views/screens/questions/bloc/category_event.dart';
+import 'package:idea_growr/views/screens/questions/bloc/category_state.dart';
+import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
+
+class CategoryBloc extends Bloc<CategoryEvent, DefaultState> {
+  @override
+  DefaultState get initialState => CategoryInitial.initial();
+
+  @override
+  Stream<DefaultState> mapEventToState(
+    CategoryEvent event,
+  ) async* {
+    // TODO: implement mapEventToState
+  }
+}
