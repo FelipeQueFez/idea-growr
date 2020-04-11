@@ -10,12 +10,12 @@ class CategoryService {
   List<CategoryModel> _getMock() {
     return [
       _mockAplicativo(),
-      // _mockNegocios(),
-      // _mockRealizacao(),
-      // _mockPessoal(),
-      // _mockTolice(),
-      // _mockSociedade(),
-      // _mockStartup(),
+      _mockNegocios(),
+      _mockRealizacao(),
+      _mockPessoal(),
+      _mockTolice(),
+      _mockSociedade(),
+      _mockStartup(),
     ];
   }
 
@@ -84,133 +84,168 @@ class CategoryService {
     return item;
   }
 
-  // CategoryModel _mockNegocios() {
-  //   var question =
-  //       new QuestionModel(1, 'Como isso está relacionado a concorrência?', '');
-  //   var question2 =
-  //       new QuestionModel(1, 'Como você consegue os seus clientes?', '');
-  //   var question3 = new QuestionModel(1, 'Quem é o seu cliente?', '');
-  //   var item = CategoryModel(1, 'Negocios', [
-  //     question,
-  //     question2,
-  //     question3,
-  //   ]);
+  CategoryModel _mockNegocios() {
+    var question = new QuestionModel(
+        id: 1,
+        title: 'Como isso está relacionado a concorrência?',
+        hintText: '');
+    var question2 = new QuestionModel(
+        id: 1, title: 'Como você consegue os seus clientes?', hintText: '');
+    var question3 =
+        new QuestionModel(id: 1, title: 'Quem é o seu cliente?', hintText: '');
+    var item = CategoryModel(id: 1, title: 'Negocios', questions: [
+      question,
+      question2,
+      question3,
+    ]);
 
-  //   return item;
-  // }
+    return item;
+  }
 
-  // CategoryModel _mockRealizacao() {
-  //   var question = new QuestionModel(1, 'Qual será o primeiro passo?', '');
-  //   var question2 = new QuestionModel(1, 'Qual será o primeiro teste?', '');
-  //   var question3 = new QuestionModel(1, 'Quando você começa?', '');
-  //   var question4 = new QuestionModel(1, 'Quem pode te ajudar?', '');
-  //   var item = CategoryModel(1, 'Realização', [
-  //     question,
-  //     question2,
-  //     question3,
-  //     question4,
-  //   ]);
+  CategoryModel _mockRealizacao() {
+    var question = new QuestionModel(
+        id: 1, title: 'Qual será o primeiro passo?', hintText: '');
+    var question2 = new QuestionModel(
+        id: 1, title: 'Qual será o primeiro teste?', hintText: '');
+    var question3 =
+        new QuestionModel(id: 1, title: 'Quando você começa?', hintText: '');
+    var question4 =
+        new QuestionModel(id: 1, title: 'Quem pode te ajudar?', hintText: '');
+    var item = CategoryModel(id: 1, title: 'Realização', questions: [
+      question,
+      question2,
+      question3,
+      question4,
+    ]);
 
-  //   return item;
-  // }
+    return item;
+  }
 
-  // CategoryModel _mockPessoal() {
-  //   var question = new QuestionModel(1, 'Porque você quer isso?', '');
-  //   var question2 =
-  //       new QuestionModel(1, 'O que você pode aprender com essa ideia?', '');
-  //   var question3 = new QuestionModel(1, 'Será divertido trabalhar nisso?', '');
-  //   var item = CategoryModel(1, 'Pessoal', [
-  //     question,
-  //     question2,
-  //     question3,
-  //   ]);
+  CategoryModel _mockPessoal() {
+    var question =
+        new QuestionModel(id: 1, title: 'Porque você quer isso?', hintText: '');
+    var question2 = new QuestionModel(
+        id: 1, title: 'O que você pode aprender com essa ideia?', hintText: '');
+    var question3 = new QuestionModel(
+        id: 1, title: 'Será divertido trabalhar nisso?', hintText: '');
+    var item = CategoryModel(id: 1, title: 'Pessoal', questions: [
+      question,
+      question2,
+      question3,
+    ]);
 
-  //   return item;
-  // }
+    return item;
+  }
 
-  // CategoryModel _mockTolice() {
-  //   var question = new QuestionModel(
-  //       1,
-  //       'Descreva a sua ideial de tal forma que a concorrência iria pensar que você é incompenente',
-  //       '');
-  //   var question2 = new QuestionModel(
-  //       1,
-  //       'Como você pode seduzir um político local para promover acidentalmente sua ideia?',
-  //       '');
-  //   var question3 = new QuestionModel(
-  //       1, 'Invente três buzzwords para promover sua ideia', '');
-  //   var question4 = new QuestionModel(
-  //       1,
-  //       'Escrever um poema de 6 linhas sobre sua ideia e e-mail para as pessoas que seriam mais confuso sobre isso. Coloque o poema e a resposta aqui.',
-  //       '');
-  //   var question5 = new QuestionModel(
-  //       1, 'Se você ideial seria um som, como alto jogaria?', '');
-  //   var question6 = new QuestionModel(
-  //       1,
-  //       'Se a sua ideia seria um animal, qual seria a sua comida favorita?',
-  //       '');
-  //   var item = CategoryModel(1, 'Tolice', [
-  //     question,
-  //     question2,
-  //     question3,
-  //     question4,
-  //     question5,
-  //     question6,
-  //   ]);
+  CategoryModel _mockTolice() {
+    var question = new QuestionModel(
+        id: 1,
+        title:
+            'Descreva a sua ideial de tal forma que a concorrência iria pensar que você é incompenente',
+        hintText: '');
+    var question2 = new QuestionModel(
+        id: 1,
+        title:
+            'Como você pode seduzir um político local para promover acidentalmente sua ideia?',
+        hintText: '');
+    var question3 = new QuestionModel(
+        id: 1,
+        title: 'Invente três buzzwords para promover sua ideia',
+        hintText: '');
+    var question4 = new QuestionModel(
+        id: 1,
+        title:
+            'Escrever um poema de 6 linhas sobre sua ideia e e-mail para as pessoas que seriam mais confuso sobre isso. Coloque o poema e a resposta aqui.',
+        hintText: '');
+    var question5 = new QuestionModel(
+        id: 1,
+        title: 'Se você ideial seria um som, como alto jogaria?',
+        hintText: '');
+    var question6 = new QuestionModel(
+        id: 1,
+        title:
+            'Se a sua ideia seria um animal, qual seria a sua comida favorita?',
+        hintText: '');
+    var item = CategoryModel(id: 1, title: 'Tolice', questions: [
+      question,
+      question2,
+      question3,
+      question4,
+      question5,
+      question6,
+    ]);
 
-  //   return item;
-  // }
+    return item;
+  }
 
-  // CategoryModel _mockSociedade() {
-  //   var question = new QuestionModel(1, 'Quem será beneficiado?', '');
-  //   var question2 = new QuestionModel(1, 'Quem vai pagar?', '');
-  //   var question3 =
-  //       new QuestionModel(1, 'Quando é considerado um sucesso?', '');
-  //   var item = CategoryModel(1, 'Sociedade', [
-  //     question,
-  //     question2,
-  //     question3,
-  //   ]);
+  CategoryModel _mockSociedade() {
+    var question =
+        new QuestionModel(id: 1, title: 'Quem será beneficiado?', hintText: '');
+    var question2 =
+        new QuestionModel(id: 1, title: 'Quem vai pagar?', hintText: '');
+    var question3 = new QuestionModel(
+        id: 1, title: 'Quando é considerado um sucesso?', hintText: '');
+    var item = CategoryModel(id: 1, title: 'Sociedade', questions: [
+      question,
+      question2,
+      question3,
+    ]);
 
-  //   return item;
-  // }
+    return item;
+  }
 
-  // CategoryModel _mockStartup() {
-  //   var question = new QuestionModel(
-  //       1,
-  //       'Qual problema sua startup vai resolver?',
-  //       'Explique os pontos de dor do que as pessoas estão sofrendo.');
-  //   var question2 = new QuestionModel(
-  //       1,
-  //       'Qual é a sua solução para este problema?',
-  //       'Descreva em poucas palavras como a sua ideia funciona.');
-  //   var question3 = new QuestionModel(1, 'Qual é o modelo de negócio?',
-  //       'Compartilhe seus pensamentos sobre como isso pode gerar receita e fazer sua ideia gerar dinheiro.');
-  //   var question4 = new QuestionModel(1, 'Quão grande é o mercado-alvo?',
-  //       'Calcule a oportunidade financeira para sua ideia. Pense em quantos clientes possuem o problema que você está resolvendo, quantas vezes eles usariam sua solução, e quanto eles pagariam por isso.');
-  //   var question5 = new QuestionModel(
-  //       1,
-  //       'Como você vai a comercialização de seu produto/serviço para os clientes?',
-  //       'Suponha que você tenha uma primeira versão finalizada do seu produto. Pense em algumas maneiras que os seus clientes podem aprender sobre ele.');
-  //   var question6 = new QuestionModel(
-  //       1,
-  //       'Existem outras empresas que façam algo semelhante?',
-  //       'Descreva como o problema está sendo resolvido hoje pelos outros e por quem. Explique por que as soluções atuais não são boas o suficiente e por que a sua é melhor. Não se preocupe se não há concorrência. Apple e Google não foram as primeiras a fazer smartphones.');
-  //   var question7 = new QuestionModel(1, 'Habilidades e Equipe',
-  //       'Pense nas habilidades que você precisa para transformar sua ideia em realidade. Descreva o que você pode contribuir e o que você ainda precisa. Dica: Confira Found2be se você estiver procurando por um co-confudados e alguma ajuda.');
-  //   var question8 = new QuestionModel(1, 'Passo de elevação',
-  //       'Você está em um elevador e um potencial investidor que você queria encontrar há muito tempo entrou. Você tem 30 segundos para convencer ele sobre a sua startup. Vai! :)');
-  //   var item = CategoryModel(1, 'Startup', [
-  //     question,
-  //     question2,
-  //     question3,
-  //     question4,
-  //     question5,
-  //     question6,
-  //     question7,
-  //     question8,
-  //   ]);
+  CategoryModel _mockStartup() {
+    var question = new QuestionModel(
+        id: 1,
+        title: 'Qual problema sua startup vai resolver?',
+        hintText:
+            'Explique os pontos de dor do que as pessoas estão sofrendo.');
+    var question2 = new QuestionModel(
+        id: 1,
+        title: 'Qual é a sua solução para este problema?',
+        hintText: 'Descreva em poucas palavras como a sua ideia funciona.');
+    var question3 = new QuestionModel(
+        id: 1,
+        title: 'Qual é o modelo de negócio?',
+        hintText:
+            'Compartilhe seus pensamentos sobre como isso pode gerar receita e fazer sua ideia gerar dinheiro.');
+    var question4 = new QuestionModel(
+        id: 1,
+        title: 'Quão grande é o mercado-alvo?',
+        hintText:
+            'Calcule a oportunidade financeira para sua ideia. Pense em quantos clientes possuem o problema que você está resolvendo, quantas vezes eles usariam sua solução, e quanto eles pagariam por isso.');
+    var question5 = new QuestionModel(
+        id: 1,
+        title:
+            'Como você vai a comercialização de seu produto/serviço para os clientes?',
+        hintText:
+            'Suponha que você tenha uma primeira versão finalizada do seu produto. Pense em algumas maneiras que os seus clientes podem aprender sobre ele.');
+    var question6 = new QuestionModel(
+        id: 1,
+        title: 'Existem outras empresas que façam algo semelhante?',
+        hintText:
+            'Descreva como o problema está sendo resolvido hoje pelos outros e por quem. Explique por que as soluções atuais não são boas o suficiente e por que a sua é melhor. Não se preocupe se não há concorrência. Apple e Google não foram as primeiras a fazer smartphones.');
+    var question7 = new QuestionModel(
+        id: 1,
+        title: 'Habilidades e Equipe',
+        hintText:
+            'Pense nas habilidades que você precisa para transformar sua ideia em realidade. Descreva o que você pode contribuir e o que você ainda precisa. Dica: Confira Found2be se você estiver procurando por um co-confudados e alguma ajuda.');
+    var question8 = new QuestionModel(
+        id: 1,
+        title: 'Passo de elevação',
+        hintText:
+            'Você está em um elevador e um potencial investidor que você queria encontrar há muito tempo entrou. Você tem 30 segundos para convencer ele sobre a sua startup. Vai! :)');
+    var item = CategoryModel(id: 1, title: 'Startup', questions: [
+      question,
+      question2,
+      question3,
+      question4,
+      question5,
+      question6,
+      question7,
+      question8,
+    ]);
 
-  //   return item;
-  // }
+    return item;
+  }
 }
