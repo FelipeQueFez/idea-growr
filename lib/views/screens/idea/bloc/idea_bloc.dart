@@ -21,6 +21,8 @@ class IdeaBloc extends Bloc<IdeaEvent, DefaultState> {
     if (event is RequestIdea) {
       yield Loading();
 
+      await Future.delayed(const Duration(seconds: 1), () => "1");
+
       await databaseService.insertIdeaAsync(event.title, event.description);
 
       yield Success();

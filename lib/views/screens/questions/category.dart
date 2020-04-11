@@ -72,13 +72,8 @@ class _CategoryState extends State<Category> {
             return CustomCircularProgressIndicator();
           }
 
-          if (state is CategoryInitial) {
+          if (state is CategoryInitial || state is Success) {
             return _buildContent();
-          }
-
-          if (state is Success) {
-            //TODO:rever
-            //Navigator.pop(context);
           }
 
           return Container();

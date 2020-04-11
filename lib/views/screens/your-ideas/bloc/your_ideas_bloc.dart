@@ -20,6 +20,8 @@ class YourIdeasBloc extends Bloc<YourIdeasEvent, DefaultState> {
     if (event is LoadIdeas) {
       yield Loading();
 
+      await Future.delayed(const Duration(seconds: 1), () => "1");
+
       var currentIdeas = await databaseService.selectedIdeasAsync();
 
       yield YourIdeasState(ideas: currentIdeas.ideas);

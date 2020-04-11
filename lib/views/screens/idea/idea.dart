@@ -83,17 +83,12 @@ class _IdeaState extends State<Idea> {
     return BlocBuilder<IdeaBloc, DefaultState>(
       bloc: _ideaBloc,
       builder: (BuildContext context, DefaultState state) {
-        if (state is IdeaInitial) {
-          return _buildContent();
-        }
-
         if (state is Loading) {
           return CustomCircularProgressIndicator();
         }
 
-        if (state is Success) {
-          //TODO:rever
-          //Navigator.pop(context);
+        if (state is IdeaInitial || state is Success) {
+          return _buildContent();
         }
 
         return Container();

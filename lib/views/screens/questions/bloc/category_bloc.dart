@@ -21,6 +21,8 @@ class CategoryBloc extends Bloc<CategoryEvent, DefaultState> {
     if (event is SaveCategory) {
       yield Loading();
 
+      await Future.delayed(const Duration(seconds: 1), () => "1");
+
       await databaseService.updateIdeaAsync(event.idea);
 
       yield Success();
