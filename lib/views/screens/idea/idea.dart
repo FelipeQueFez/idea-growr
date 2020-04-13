@@ -87,7 +87,7 @@ class _IdeaState extends State<Idea> {
         _textEditingController.text,
         _textNoteEditingController.text,
         () {
-          Navigator.pop(context);
+          Navigator.pop(context, true);
         },
       ),
     );

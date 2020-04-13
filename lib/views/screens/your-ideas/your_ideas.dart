@@ -81,11 +81,12 @@ class _YourIdeasState extends State<YourIdeas> {
           Text('Suas Ideias'),
           Row(
             children: <Widget>[
-              Icon(
-                Icons.important_devices,
-                size: 30,
-                color: AppColors.gray,
-              ),
+              //TODO:implement
+              // Icon(
+              //   Icons.important_devices,
+              //   size: 30,
+              //   color: AppColors.gray,
+              // ),
             ],
           )
         ],

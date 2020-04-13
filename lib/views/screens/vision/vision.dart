@@ -53,16 +53,17 @@ class Vison extends StatelessWidget {
           Text('Visão Global'),
           Row(
             children: <Widget>[
-              Icon(
-                Icons.restore_from_trash,
-                size: 30,
-                color: AppColors.gray,
-              ),
-              Icon(
-                Icons.share,
-                size: 30,
-                color: AppColors.gray,
-              ),
+              //TODO:implement
+              // Icon(
+              //   Icons.restore_from_trash,
+              //   size: 30,
+              //   color: AppColors.gray,
+              // ),
+              // Icon(
+              //   Icons.share,
+              //   size: 30,
+              //   color: AppColors.gray,
+              // ),
             ],
           )
         ],

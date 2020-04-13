@@ -46,23 +46,24 @@ class _HomeState extends State<Home> {
           Text('Idea Growr'),
           Row(
             children: <Widget>[
-              Icon(
-                Icons.file_upload,
-                size: 30,
-                color: AppColors.gray,
-              ),
-              SpacerBox.h15,
-              Icon(
-                Icons.home,
-                size: 30,
-                color: AppColors.gray,
-              ),
-              SpacerBox.h15,
-              Icon(
-                Icons.collections,
-                size: 30,
-                color: AppColors.gray,
-              ),
+              //TODO:implement
+              // Icon(
+              //   Icons.file_upload,
+              //   size: 30,
+              //   color: AppColors.gray,
+              // ),
+              // SpacerBox.h15,
+              // Icon(
+              //   Icons.home,
+              //   size: 30,
+              //   color: AppColors.gray,
+              // ),
+              // SpacerBox.h15,
+              // Icon(
+              //   Icons.collections,
+              //   size: 30,
+              //   color: AppColors.gray,
+              // ),
             ],
           )
         ],
@@ -100,11 +101,15 @@ class _HomeState extends State<Home> {
                 color: AppColors.white,
                 fontWeight: FontWeight.bold,
               ),
-              onTapCallback: () {
-                Navigator.push(
+              onTapCallback: () async {
+                bool refresh = await Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Idea()),
                 );
+
+                if (refresh != null && refresh) {
+                  _homeBloc.add(LoadIdeas());
+                }
               },
             ),
             CustomCard(
