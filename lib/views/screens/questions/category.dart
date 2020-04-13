@@ -57,9 +57,20 @@ class _CategoryState extends State<Category> {
             fontWeight: FontWeight.bold,
           ),
           onTapCallback: () {
-            _categoryBloc.add(SaveCategory(widget.idea));
+            _saveCategory();
           },
         ),
+      ),
+    );
+  }
+
+  void _saveCategory() {
+    _categoryBloc.add(
+      SaveCategory(
+        widget.idea,
+        () {
+          Navigator.pop(context);
+        },
       ),
     );
   }
@@ -72,7 +83,7 @@ class _CategoryState extends State<Category> {
             return CustomCircularProgressIndicator();
           }
 
-          if (state is CategoryInitial || state is Success) {
+          if (state is CategoryInitial) {
             return _buildContent();
           }
 
@@ -108,7 +119,7 @@ class _CategoryState extends State<Category> {
                 iconSize: 30,
                 color: AppColors.gray,
                 onPressed: () {
-                  _categoryBloc.add(SaveCategory(widget.idea));
+                  _saveCategory();
                 },
               ),
             ],

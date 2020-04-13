@@ -25,7 +25,9 @@ class CategoryBloc extends Bloc<CategoryEvent, DefaultState> {
 
       await databaseService.updateIdeaAsync(event.idea);
 
-      yield Success();
+      yield CategoryInitial();
+
+      event.successCallback();
     }
   }
 }

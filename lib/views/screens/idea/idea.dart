@@ -51,8 +51,7 @@ class _IdeaState extends State<Idea> {
             fontWeight: FontWeight.bold,
           ),
           onTapCallback: () {
-            _ideaBloc.add(RequestIdea(
-                _textEditingController.text, _textNoteEditingController.text));
+            _requestIdea();
           },
         ),
       ),
@@ -67,14 +66,29 @@ class _IdeaState extends State<Idea> {
           Text('Criar ideia'),
           Row(
             children: <Widget>[
-              Icon(
-                Icons.save,
-                size: 30,
+              IconButton(
+                icon: Icon(Icons.save),
+                iconSize: 30,
                 color: AppColors.gray,
+                onPressed: () {
+                  _requestIdea();
+                },
               ),
             ],
           )
         ],
+      ),
+    );
+  }
+
+  void _requestIdea() {
+    _ideaBloc.add(
+      RequestIdea(
+        _textEditingController.text,
+        _textNoteEditingController.text,
+        () {
+          Navigator.pop(context);
+        },
       ),
     );
   }
@@ -87,7 +101,7 @@ class _IdeaState extends State<Idea> {
           return CustomCircularProgressIndicator();
         }
 
-        if (state is IdeaInitial || state is Success) {
+        if (state is IdeaInitial) {
           return _buildContent();
         }
 

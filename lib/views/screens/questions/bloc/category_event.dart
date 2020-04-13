@@ -6,6 +6,7 @@ abstract class CategoryEvent {}
 
 class SaveCategory extends CategoryEvent {
   final IdeaModel idea;
+  final Function successCallback;
 
-  SaveCategory(this.idea);
+  SaveCategory(this.idea, this.successCallback);
 }

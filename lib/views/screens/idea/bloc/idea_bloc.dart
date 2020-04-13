@@ -25,7 +25,9 @@ class IdeaBloc extends Bloc<IdeaEvent, DefaultState> {
 
       await databaseService.insertIdeaAsync(event.title, event.description);
 
-      yield Success();
+      yield IdeaInitial();
+
+      event.successCallback();
     }
   }
 }
