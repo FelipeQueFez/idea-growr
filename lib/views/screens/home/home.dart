@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/setup.dart';
+import 'package:idea_growr/views/screens/home/bloc/home_bloc.dart';
+import 'package:idea_growr/views/screens/home/bloc/home_state.dart';
+import 'package:idea_growr/views/screens/home/bloc/home_event.dart';
 import 'package:idea_growr/views/screens/idea/idea.dart';
 import 'package:idea_growr/views/screens/your-ideas/your_ideas.dart';
+import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
+import 'package:idea_growr/views/shared/custom_circular_progress_indicador.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 import 'package:idea_growr/views/shared/custom_text.dart';
@@ -15,6 +22,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  HomeBloc _homeBloc;
+
+  @override
+  void initState() {
+    _homeBloc = getItInstance<HomeBloc>()..add(LoadIdeas());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -56,6 +71,23 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildBody() {
+    return BlocBuilder<HomeBloc, DefaultState>(
+      bloc: _homeBloc,
+      builder: (BuildContext context, DefaultState state) {
+        if (state is Loading) {
+          return CustomCircularProgressIndicator();
+        }
+
+        if (state is HomeState) {
+          return _buildContent(state.countIdeas);
+        }
+
+        return Container();
+      },
+    );
+  }
+
+  Widget _buildContent(int countIdeas) {
     return SingleChildScrollView(
       child: CustomContainer(
         child: Column(
@@ -89,7 +121,7 @@ class _HomeState extends State<Home> {
               backgroundColor: AppColors.white,
               icon: Icons.chat,
               title: ExtendsText(
-                'Suas ideias (14)',
+                'Suas ideias ($countIdeas)',
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
               ),
@@ -100,24 +132,24 @@ class _HomeState extends State<Home> {
                 );
               },
             ),
-            CustomCard(
-              backgroundColor: AppColors.white,
-              icon: Icons.chat,
-              title: ExtendsText(
-                'Encontrar músicos',
-                color: AppColors.primary,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-            CustomCard(
-              backgroundColor: AppColors.white,
-              icon: Icons.file_download,
-              title: ExtendsText(
-                'Usuário informa gostos de música, culinária, cultura etc... E o app busca lugares que combinam com os gostos dele.',
-                color: AppColors.primary,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
+            // CustomCard(
+            //   backgroundColor: AppColors.white,
+            //   icon: Icons.chat,
+            //   title: ExtendsText(
+            //     'Encontrar músicos',
+            //     color: AppColors.primary,
+            //     fontWeight: FontWeight.normal,
+            //   ),
+            // ),
+            // CustomCard(
+            //   backgroundColor: AppColors.white,
+            //   icon: Icons.file_download,
+            //   title: ExtendsText(
+            //     'Usuário informa gostos de música, culinária, cultura etc... E o app busca lugares que combinam com os gostos dele.',
+            //     color: AppColors.primary,
+            //     fontWeight: FontWeight.normal,
+            //   ),
+            // ),
             SpacerBox.v20,
             Align(
               alignment: Alignment.topLeft,

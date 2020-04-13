@@ -36,12 +36,12 @@ void _registerSingletonServices() {
   getItInstance.registerLazySingleton<CategoryService>(() => CategoryService());
 
   getItInstance.registerLazySingleton<DatabaseService>(
-      () => DatabaseService(getItInstance(), getItInstance(), getItInstance()));
+      () => DatabaseService(getItInstance(), getItInstance()));
 }
 
 void _registerBlocs() {
   getItInstance.registerLazySingleton<YourIdeasBloc>(() => YourIdeasBloc(getItInstance()));
   getItInstance.registerLazySingleton<IdeaBloc>(() => IdeaBloc(getItInstance()));
   getItInstance.registerLazySingleton<CategoryBloc>(() => CategoryBloc(getItInstance()));
-  getItInstance.registerLazySingleton<HomeBloc>(() => HomeBloc());
+  getItInstance.registerLazySingleton<HomeBloc>(() => HomeBloc(getItInstance()));
 }

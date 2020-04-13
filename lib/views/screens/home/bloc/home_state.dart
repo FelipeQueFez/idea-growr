@@ -1,16 +1,19 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:idea_growr/views/shared/bloc/DefaultState.dart';
 
 @immutable
-class HomeInitial extends DefaultState {
-  HomeInitial();
+class HomeState extends DefaultState {
 
-  factory HomeInitial.initial() {
-    return HomeInitial();
+  final int countIdeas;
+
+  HomeState({this.countIdeas});
+
+  factory HomeState.initial() {
+    return HomeState(
+      countIdeas: 0
+    );
   }
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [countIdeas];
 }

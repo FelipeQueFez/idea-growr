@@ -11,12 +11,12 @@ import 'package:uuid/uuid.dart';
 class DatabaseService {
   final DatabaseProvider provider;
   final UserModel userModel;
-  final Database db;
 
-  DatabaseService(this.provider, this.userModel, this.db);
+  DatabaseService(this.provider, this.userModel);
 
   Future insertIdeaAsync(String ideaTitle, String ideaDescription) async {
-    var uuid = getItInstance.get<Uuid>();
+    var uuid = getItInstance<Uuid>();
+    var db = await _instanceDatabaseAsync();
 
     IdeaModel newIdea = new IdeaModel(
         ideaId: uuid.v1(),
@@ -41,6 +41,7 @@ class DatabaseService {
   }
 
   Future updateIdeaAsync(IdeaModel idea) async {
+    var db = await _instanceDatabaseAsync();
     var result = await provider.selectUserIdDatabaseAsync(db, userModel.userId);
     var currentUserIdeas = _stringToObject(result);
 
@@ -53,6 +54,7 @@ class DatabaseService {
   }
 
   Future<UserIdeasModel> selectedIdeasAsync() async {
+    var db = await _instanceDatabaseAsync();
     var result = await provider.selectUserIdDatabaseAsync(db, userModel.userId);
     UserIdeasModel currentUserIdeas;
 
@@ -62,6 +64,14 @@ class DatabaseService {
       currentUserIdeas = new UserIdeasModel(ideas: List());
 
     return currentUserIdeas;
+  }
+
+  Future<Database> _instanceDatabaseAsync() async {
+    if (getItInstance.isRegistered<Database>()) {
+      return getItInstance<Database>();
+    } else {
+      return provider.openDatabaseAsync();
+    }
   }
 
   String _objectIdeasToString(UserIdeasModel ideas) {
