@@ -64,7 +64,7 @@ class _NoteState extends State<Note> {
               maxLines: 5,
               style: TextStyle(fontSize: 14),
               decoration: InputDecoration(
-                hintText: 'Dê um nome a sua ideia',
+                hintText: 'Notes here',
                 hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ),
@@ -78,7 +78,7 @@ class _NoteState extends State<Note> {
                   setState(() {});
                 }
               },
-              child: Text('Tirar foto', style: TextStyle(fontSize: 20)),
+              child: Text('Photo from camera', style: TextStyle(fontSize: 20)),
             ),
             SpacerBox.v20,
             cardImage != null ? cardImage : Container()
@@ -113,7 +113,7 @@ class _NoteState extends State<Note> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text('Escrever nota'),
+          Text('Write note'),
           Row(
             children: <Widget>[
               IconButton(
@@ -139,7 +139,7 @@ class _NoteState extends State<Note> {
           backgroundColor: AppColors.idea,
           icon: Icons.save,
           title: ExtendsText(
-            'Salvar',
+            'Save',
             color: AppColors.white,
             fontWeight: FontWeight.bold,
           ),
