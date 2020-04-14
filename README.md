@@ -1,6 +1,6 @@
 # idea_growr_clone
 
-Clone of an amazing app called “Idea Growr”.
+Clone of an amazing app called “Idea Growr”, using [Flutter](https://flutter.dev/docs).
 
 It helps you to structure ideas and turn them into a business.
 
