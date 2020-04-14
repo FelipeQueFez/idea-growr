@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Idea Growr',
+        title: 'Idea Growr Clone',
         debugShowCheckedModeBanner: false,
         theme: getTheme(context),
         home: Home());

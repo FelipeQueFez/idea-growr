@@ -78,7 +78,7 @@ class _YourIdeasState extends State<YourIdeas> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text('Suas Ideias'),
+          Text('Your ideas'),
           Row(
             children: <Widget>[
               //TODO:implement

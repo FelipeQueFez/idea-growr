@@ -37,7 +37,7 @@ class _VisonState extends State<Vison> {
             backgroundColor: AppColors.idea,
             icon: Icons.people,
             title: ExtendsText(
-              'Escrever nota',
+              'Write note',
               color: AppColors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -83,7 +83,7 @@ class _VisonState extends State<Vison> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text('Visão Global'),
+          Text('Global Vision'),
           Row(
             children: <Widget>[
               //TODO:implement

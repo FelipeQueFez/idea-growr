@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text('Idea Growr'),
+          Text('Idea Growr Clone'),
           Row(
             children: <Widget>[
               //TODO:implement
@@ -97,7 +97,7 @@ class _HomeState extends State<Home> {
               backgroundColor: AppColors.idea,
               icon: Icons.people,
               title: ExtendsText(
-                'Criar ideia',
+                'Create idea',
                 color: AppColors.white,
                 fontWeight: FontWeight.bold,
               ),
@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
               backgroundColor: AppColors.primary,
               icon: Icons.camera,
               title: ExtendsText(
-                'Escrever nota',
+                'Write note',
                 color: AppColors.white,
                 fontWeight: FontWeight.bold,
               ),
@@ -126,7 +126,7 @@ class _HomeState extends State<Home> {
               backgroundColor: AppColors.white,
               icon: Icons.chat,
               title: ExtendsText(
-                'Suas ideias ($countIdeas)',
+                'Your ideas ($countIdeas)',
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
               ),
@@ -159,7 +159,7 @@ class _HomeState extends State<Home> {
             Align(
               alignment: Alignment.topLeft,
               child: CustomText(
-                'Você tem dois minutos ?',
+                'Do you have two minutes?',
                 color: AppColors.silver,
                 fontWeight: FontWeight.normal,
                 fontSize: 15,
@@ -169,7 +169,7 @@ class _HomeState extends State<Home> {
               backgroundColor: AppColors.white,
               icon: Icons.folder,
               title: ExtendsText(
-                'Preenche o nosso formuário de feedback (Inglês)',
+                'Fill out our feedback form (English)',
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
               ),
@@ -178,7 +178,7 @@ class _HomeState extends State<Home> {
               backgroundColor: AppColors.white,
               icon: Icons.close,
               title: ExtendsText(
-                'Desculpe, não há tempo para feedback',
+                'Sorry, no time for feedback',
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
               ),

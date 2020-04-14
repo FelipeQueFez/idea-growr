@@ -46,7 +46,7 @@ class _IdeaState extends State<Idea> {
           backgroundColor: AppColors.idea,
           icon: Icons.save,
           title: ExtendsText(
-            'Salvar',
+            'Save',
             color: AppColors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -63,7 +63,7 @@ class _IdeaState extends State<Idea> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text('Criar ideia'),
+          Text('Create idea'),
           Row(
             children: <Widget>[
               IconButton(
@@ -120,7 +120,7 @@ class _IdeaState extends State<Idea> {
               keyboardType: TextInputType.text,
               style: TextStyle(fontSize: 14),
               decoration: InputDecoration(
-                hintText: 'Dê um nome a sua ideia',
+                hintText: 'Name your idea',
                 hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ),
@@ -131,7 +131,7 @@ class _IdeaState extends State<Idea> {
               keyboardType: TextInputType.multiline,
               style: TextStyle(fontSize: 14),
               decoration: InputDecoration(
-                hintText: 'Anote sua ideia',
+                hintText: 'Write down your idea',
                 hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ),

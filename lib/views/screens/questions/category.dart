@@ -52,7 +52,7 @@ class _CategoryState extends State<Category> {
           backgroundColor: AppColors.idea,
           icon: Icons.save,
           title: ExtendsText(
-            'Salvar mudanças',
+            'Save',
             color: AppColors.white,
             fontWeight: FontWeight.bold,
           ),
