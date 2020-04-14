@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
                 color: AppColors.primary,
                 fontWeight: FontWeight.bold,
               ),
-              onTapCallback: () async {
+              onTapCallback: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => YourIdeas()),

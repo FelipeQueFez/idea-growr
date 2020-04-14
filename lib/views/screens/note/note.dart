@@ -1,12 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:idea_growr/app_colors.dart';
+import 'package:idea_growr/modules/shared/image_service.dart';
 import 'package:idea_growr/modules/user_answer/model/idea_model.dart';
 import 'package:idea_growr/views/shared/custom_card.dart';
 import 'package:idea_growr/views/shared/custom_container.dart';
 import 'package:idea_growr/views/shared/custom_scaffold.dart';
 import 'package:idea_growr/views/shared/extend_text.dart';
-
-//TODO:implement
+import 'package:idea_growr/views/shared/spacer_box.dart';
 
 class Note extends StatefulWidget {
   final IdeaModel idea;
@@ -20,6 +22,8 @@ class Note extends StatefulWidget {
 class _NoteState extends State<Note> {
   TextEditingController _textEditingController = TextEditingController();
 
+  Widget cardImage;
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -32,6 +36,7 @@ class _NoteState extends State<Note> {
   Widget _buildBody() {
     return _buildContent();
 
+    //TODO:implement
     // return BlocBuilder<IdeaBloc, DefaultState>(
     //   bloc: _ideaBloc,
     //   builder: (BuildContext context, DefaultState state) {
@@ -55,16 +60,51 @@ class _NoteState extends State<Note> {
           children: <Widget>[
             TextFormField(
               controller: _textEditingController,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.multiline,
+              maxLines: 5,
               style: TextStyle(fontSize: 14),
               decoration: InputDecoration(
                 hintText: 'Dê um nome a sua ideia',
                 hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ),
+            SpacerBox.v20,
+            RaisedButton(
+              onPressed: () async {
+                ImageService imageService = new ImageService();
+                var file = await imageService.getImageAsync();
+                if(file != null) {
+                  cardImage = _buildCardImage(file);
+                  setState(() {});
+                }
+              },
+              child: Text('Tirar foto', style: TextStyle(fontSize: 20)),
+            ),
+            SpacerBox.v20,
+            cardImage != null ? cardImage : Container()
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildCardImage(File file) {
+    return Card(
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Column(
+        children: <Widget>[
+          Image.file(
+            file,
+            fit: BoxFit.fill,
+          ),
+        ],
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      elevation: 5,
+      margin: EdgeInsets.all(10),
     );
   }
 
@@ -81,7 +121,7 @@ class _NoteState extends State<Note> {
                 iconSize: 30,
                 color: AppColors.gray,
                 onPressed: () {
-                  _requestIdea();
+                  //_requestIdea();
                 },
               ),
             ],
@@ -104,22 +144,18 @@ class _NoteState extends State<Note> {
             fontWeight: FontWeight.bold,
           ),
           onTapCallback: () {
-            _requestIdea();
+            //_requestIdea();
           },
         ),
       ),
     );
   }
 
+  //TODO:implement
   void _requestIdea() {
-    // _ideaBloc.add(
-    //   RequestIdea(
-    //     _textEditingController.text,
-    //     _textNoteEditingController.text,
-    //     () {
-    //       Navigator.pop(context, true);
-    //     },
-    //   ),
-    // );
+    final snackBar = SnackBar(content: Text('In development'));
+
+    // Find the Scaffold in the widget tree and use it to show a SnackBar.
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 }
