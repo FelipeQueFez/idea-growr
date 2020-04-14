@@ -1,6 +1,10 @@
 # idea_growr_clone
 
-A new Flutter project.
+Clone of an amazing app called “Idea Growr”.
+
+It helps you to structure ideas and turn them into a business.
+
+- [The original app here](https://play.google.com/store/apps/details?id=com.juliushuijnk.tools.ideagrowr)
 
 ## Preview App Android
 
